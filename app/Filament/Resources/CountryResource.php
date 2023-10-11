@@ -31,7 +31,16 @@ class CountryResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('code')
+                    ->required()
+                    ->maxLength(3),
+                Forms\Components\TextInput::make('phone')
+                    ->required()
+                    ->numeric()
+                    ->maxLength(12),
             ]);
     }
 
