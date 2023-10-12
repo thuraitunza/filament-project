@@ -24,6 +24,16 @@ class UserResource extends Resource
 
     protected static ?string $navigationGroup = 'User Management';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    public static function getNavigationBadgeColor():?string
+    {
+        return static::getModel()::count() > 0? 'primary' : 'warning';
+    }
+
 
     public static function form(Form $form): Form
     {
