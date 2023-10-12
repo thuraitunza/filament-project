@@ -12,6 +12,9 @@ use Filament\Forms\Form;
 use Filament\Forms\FormsComponent;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -164,6 +167,50 @@ class EmployeeResource extends Resource
             ]);
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Section::make('Relationship')
+                ->schema([
+                    TextEntry::make('country.name')
+                        ->label('Country Name'),
+                    TextEntry::make('state.name')
+                        ->label('State Name'),
+                    TextEntry::make('city.name')
+                        ->label('City Name'),
+                    TextEntry::make('department.name')
+                        ->label('Department Name'),
+                ])->columns(2),
+
+                Section::make('Username')
+                ->schema([
+                    TextEntry::make('first_name')
+                    ->label('First Name'),
+                    TextEntry::make('middle_name')
+                    ->label('Middle Name'),
+                    TextEntry::make('last_name')
+                    ->label('Last Name'),
+                ])->columns(3),
+
+                Section::make('User Address')
+                ->schema([
+                    TextEntry::make('address')
+                        ->label('Address'),
+                    TextEntry::make('zip_code')
+                        ->label('Zip Code')
+                ])->columns(2),
+
+                Section::make('Dates')
+                ->schema([
+                    TextEntry::make('date_of_birth')
+                        ->label('Date of Birth'),
+                    TextEntry::make('date_hired')
+                        ->label('Date Hired'),
+                ])->columns(2),
+            ]);
+    }
+
     public static function getRelations(): array
     {
         return [
@@ -176,7 +223,7 @@ class EmployeeResource extends Resource
         return [
             'index' => Pages\ListEmployees::route('/'),
             'create' => Pages\CreateEmployee::route('/create'),
-            'view' => Pages\ViewEmployee::route('/{record}'),
+            // 'view' => Pages\ViewEmployee::route('/{record}'),
             'edit' => Pages\EditEmployee::route('/{record}/edit'),
         ];
     }
