@@ -129,6 +129,18 @@ class EmployeeResource extends Resource
                     ->label('Country Name')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('state.name')
+                    ->label('State Name')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('city.name')
+                    ->label('City Name')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('department.name')
+                    ->label('Department Name')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('first_name')
                     ->sortable()
                     ->searchable(),
